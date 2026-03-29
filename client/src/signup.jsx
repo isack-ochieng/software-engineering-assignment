@@ -12,6 +12,7 @@ import {
   CheckCircle,
   AlertCircle
 } from "lucide-react";
+import "./App.css"; // Make sure this is imported
 
 function Signup() {
   const navigate = useNavigate();
@@ -127,93 +128,93 @@ function Signup() {
   };
 
   return (
-    <div style={styles.container}>
+    <div className="signup-container">
       {/* Background Pattern */}
-      <div style={styles.backgroundPattern}></div>
+      <div className="signup-background-pattern"></div>
       
       {/* Main Card */}
-      <div style={styles.card}>
-        <div style={styles.header}>
+      <div className="signup-card">
+        <div className="signup-header">
           <Building2 size={48} color="#4F46E5" />
-          <h1 style={styles.title}>Taifa Systems</h1>
-          <p style={styles.subtitle}>Employee Management System</p>
+          <h1 className="signup-title">Taifa Systems</h1>
+          <p className="signup-subtitle">Employee Management System</p>
         </div>
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <h2 style={styles.formTitle}>Create Account</h2>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <h2 className="signup-form-title">Create Account</h2>
 
           {/* Alerts */}
           {error && (
-            <div style={styles.alertError}>
+            <div className="signup-alert-error">
               <AlertCircle size={18} />
               <span>{error}</span>
             </div>
           )}
           {success && (
-            <div style={styles.alertSuccess}>
+            <div className="signup-alert-success">
               <CheckCircle size={18} />
               <span>{success}</span>
             </div>
           )}
 
           {/* Form Fields */}
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>
-              Full Name <span style={styles.required}>*</span>
+          <div className="signup-input-group">
+            <label className="signup-label">
+              Full Name <span className="signup-required">*</span>
             </label>
-            <div style={styles.inputWrapper}>
-              <User size={18} style={styles.inputIcon} />
+            <div className="signup-input-wrapper">
+              <User size={18} className="signup-input-icon" />
               <input
                 type="text"
                 name="name"
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={handleChange}
-                style={styles.input}
+                className="signup-input"
               />
             </div>
           </div>
 
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>
-              Employee ID <span style={styles.required}>*</span>
+          <div className="signup-input-group">
+            <label className="signup-label">
+              Employee ID <span className="signup-required">*</span>
             </label>
-            <div style={styles.inputWrapper}>
-              <Briefcase size={18} style={styles.inputIcon} />
+            <div className="signup-input-wrapper">
+              <Briefcase size={18} className="signup-input-icon" />
               <input
                 type="text"
                 name="employeeId"
                 placeholder="EMP-2024-001"
                 value={formData.employeeId}
                 onChange={handleChange}
-                style={styles.input}
+                className="signup-input"
               />
             </div>
           </div>
 
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Email Address <span style={styles.required}>*</span></label>
-            <div style={styles.inputWrapper}>
-              <Mail size={18} style={styles.inputIcon} />
+          <div className="signup-input-group">
+            <label className="signup-label">Email Address <span className="signup-required">*</span></label>
+            <div className="signup-input-wrapper">
+              <Mail size={18} className="signup-input-icon" />
               <input
                 type="email"
                 name="email"
                 placeholder="john.doe@taifasystems.com"
                 value={formData.email}
                 onChange={handleChange}
-                style={styles.input}
+                className="signup-input"
               />
             </div>
           </div>
 
-          <div style={styles.row}>
-            <div style={{...styles.inputGroup, flex: 1, marginRight: '1rem'}}>
-              <label style={styles.label}>Role</label>
+          <div className="signup-row">
+            <div className="signup-input-group" style={{ flex: 1, marginRight: '1rem' }}>
+              <label className="signup-label">Role</label>
               <select
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
-                style={styles.select}
+                className="signup-select"
               >
                 <option value="">Select Role</option>
                 <option value="developer">Developer</option>
@@ -224,13 +225,13 @@ function Signup() {
               </select>
             </div>
 
-            <div style={{...styles.inputGroup, flex: 1}}>
-              <label style={styles.label}>Department</label>
+            <div className="signup-input-group" style={{ flex: 1 }}>
+              <label className="signup-label">Department</label>
               <select
                 name="department"
                 value={formData.department}
                 onChange={handleChange}
-                style={styles.select}
+                className="signup-select"
               >
                 <option value="">Select Department</option>
                 <option value="engineering">Engineering</option>
@@ -242,69 +243,75 @@ function Signup() {
             </div>
           </div>
 
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>
-              Password <span style={styles.required}>*</span>
+          <div className="signup-input-group">
+            <label className="signup-label">
+              Password <span className="signup-required">*</span>
             </label>
-            <div style={styles.inputWrapper}>
-              <Lock size={18} style={styles.inputIcon} />
+            <div className="signup-input-wrapper">
+              <Lock size={18} className="signup-input-icon" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Create a strong password"
                 value={formData.password}
                 onChange={handleChange}
-                style={styles.input}
+                className="signup-input"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                style={styles.eyeButton}
+                className="signup-eye-button"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
             {formData.password && (
-              <div style={styles.passwordStrength}>
-                <div style={{...styles.strengthBar, width: `${(passwordStrength / 5) * 100}%`, backgroundColor: getStrengthColor()}}></div>
-                <span style={{...styles.strengthText, color: getStrengthColor()}}>
+              <div className="signup-password-strength">
+                <div 
+                  className="signup-strength-bar" 
+                  style={{ 
+                    width: `${(passwordStrength / 5) * 100}%`, 
+                    backgroundColor: getStrengthColor()
+                  }}
+                ></div>
+                <span className="signup-strength-text" style={{ color: getStrengthColor() }}>
                   {getStrengthText()} Password
                 </span>
               </div>
             )}
           </div>
 
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>
-              Confirm Password <span style={styles.required}>*</span>
+          <div className="signup-input-group">
+            <label className="signup-label">
+              Confirm Password <span className="signup-required">*</span>
             </label>
-            <div style={styles.inputWrapper}>
-              <Lock size={18} style={styles.inputIcon} />
+            <div className="signup-input-wrapper">
+              <Lock size={18} className="signup-input-icon" />
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm your password"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                style={styles.input}
+                className="signup-input"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                style={styles.eyeButton}
+                className="signup-eye-button"
               >
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
 
-          <button type="submit" disabled={loading} style={styles.button}>
+          <button type="submit" disabled={loading} className="signup-button">
             {loading ? "Creating Account..." : "Create Account"}
           </button>
 
-          <p style={styles.text}>
+          <p className="signup-text">
             Already have an account?{" "}
-            <Link to="/login" style={styles.link}>
+            <Link to="/login" className="signup-link">
               Sign in
             </Link>
           </p>
@@ -313,221 +320,5 @@ function Signup() {
     </div>
   );
 }
-
-// Modern CSS-in-JS styling
-const styles = {
-  container: {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    position: "relative",
-    padding: "2rem",
-  },
-  backgroundPattern: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2%, transparent 2.5%),
-                      radial-gradient(circle at 80% 30%, rgba(255,255,255,0.1) 2%, transparent 2.5%)`,
-    backgroundSize: "40px 40px",
-    backgroundPosition: "0 0, 20px 20px",
-    pointerEvents: "none",
-  },
-  card: {
-    background: "white",
-    borderRadius: "24px",
-    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-    overflow: "hidden",
-    width: "100%",
-    maxWidth: "500px",
-    animation: "slideUp 0.5s ease-out",
-  },
-  header: {
-    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    padding: "2rem",
-    textAlign: "center",
-    color: "white",
-  },
-  title: {
-    fontSize: "28px",
-    fontWeight: "bold",
-    margin: "0.5rem 0 0 0",
-    letterSpacing: "-0.5px",
-  },
-  subtitle: {
-    fontSize: "14px",
-    opacity: 0.9,
-    margin: "0.5rem 0 0 0",
-  },
-  form: {
-    padding: "2rem",
-  },
-  formTitle: {
-    fontSize: "24px",
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: "1.5rem",
-    textAlign: "center",
-  },
-  inputGroup: {
-    marginBottom: "1.25rem",
-  },
-  label: {
-    display: "block",
-    marginBottom: "0.5rem",
-    fontSize: "14px",
-    fontWeight: "500",
-    color: "#555",
-  },
-  required: {
-    color: "#ff4444",
-  },
-  inputWrapper: {
-    position: "relative",
-    display: "flex",
-    alignItems: "center",
-  },
-  inputIcon: {
-    position: "absolute",
-    left: "12px",
-    color: "#999",
-  },
-  input: {
-    width: "100%",
-    padding: "12px 12px 12px 40px",
-    fontSize: "14px",
-    border: "1px solid #e0e0e0",
-    borderRadius: "10px",
-    transition: "all 0.3s ease",
-    outline: "none",
-    fontFamily: "inherit",
-    "&:focus": {
-      borderColor: "#667eea",
-      boxShadow: "0 0 0 3px rgba(102, 126, 234, 0.1)",
-    },
-  },
-  select: {
-    width: "100%",
-    padding: "12px",
-    fontSize: "14px",
-    border: "1px solid #e0e0e0",
-    borderRadius: "10px",
-    transition: "all 0.3s ease",
-    outline: "none",
-    backgroundColor: "white",
-    cursor: "pointer",
-    "&:focus": {
-      borderColor: "#667eea",
-      boxShadow: "0 0 0 3px rgba(102, 126, 234, 0.1)",
-    },
-  },
-  row: {
-    display: "flex",
-    gap: "1rem",
-    marginBottom: "1.25rem",
-  },
-  eyeButton: {
-    position: "absolute",
-    right: "12px",
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    color: "#999",
-    padding: 0,
-    display: "flex",
-    alignItems: "center",
-    "&:hover": {
-      color: "#667eea",
-    },
-  },
-  passwordStrength: {
-    marginTop: "0.5rem",
-  },
-  strengthBar: {
-    height: "4px",
-    borderRadius: "2px",
-    transition: "all 0.3s ease",
-    marginBottom: "0.25rem",
-  },
-  strengthText: {
-    fontSize: "12px",
-  },
-  button: {
-    width: "100%",
-    padding: "12px",
-    fontSize: "16px",
-    fontWeight: "600",
-    color: "white",
-    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    border: "none",
-    borderRadius: "10px",
-    cursor: "pointer",
-    transition: "transform 0.2s, box-shadow 0.2s",
-    marginTop: "1rem",
-    "&:hover": {
-      transform: "translateY(-2px)",
-      boxShadow: "0 10px 20px rgba(102, 126, 234, 0.3)",
-    },
-    "&:active": {
-      transform: "translateY(0)",
-    },
-    "&:disabled": {
-      opacity: 0.6,
-      cursor: "not-allowed",
-    },
-  },
-  text: {
-    marginTop: "1.5rem",
-    fontSize: "14px",
-    textAlign: "center",
-    color: "#666",
-  },
-  link: {
-    color: "#667eea",
-    textDecoration: "none",
-    fontWeight: "600",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  },
-  alertError: {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    padding: "0.75rem",
-    backgroundColor: "#fee",
-    color: "#c33",
-    borderRadius: "10px",
-    fontSize: "14px",
-    marginBottom: "1rem",
-  },
-  alertSuccess: {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    padding: "0.75rem",
-    backgroundColor: "#e8f5e9",
-    color: "#2e7d32",
-    borderRadius: "10px",
-    fontSize: "14px",
-    marginBottom: "1rem",
-  },
-};
-
-// Add animation keyframes (you'll need to add this to your global CSS or use a CSS-in-JS library)
-// @keyframes slideUp {
-//   from {
-//     opacity: 0;
-//     transform: translateY(20px);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-// }
 
 export default Signup;
